@@ -21,12 +21,12 @@ namespace ClientApp
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {//test
+        { 
             InitializeComponent();
         }
         void OnClick1(object sender, RoutedEventArgs e)
         {
-            button1.Background = Brushes.LightBlue;
+            button1.Background = Brushes.Blue;
         }
     }
 }
