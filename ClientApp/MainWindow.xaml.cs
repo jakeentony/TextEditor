@@ -24,9 +24,5 @@ namespace ClientApp
         { 
             InitializeComponent();
         }
-        void OnClick1(object sender, RoutedEventArgs e)
-        {
-            button1.Background = Brushes.Blue;
-        }
     }
 }
