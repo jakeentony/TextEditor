@@ -24,13 +24,6 @@ namespace ClientApp
         { 
             InitializeComponent();
         }
-        private bool _isDark;
 
-        private void ChangeTheme(object sender, RoutedEventArgs e)
-        {
-            ResourceLocator.SetColorScheme(Application.Current.Resources, _isDark ? ResourceLocator.LightColorScheme : ResourceLocator.DarkColorScheme);
-
-            _isDark = !_isDark;
-        }
     }
 }

@@ -20,6 +20,6 @@
                 </Style>
             </RichTextBox.Resources>
         </RichTextBox>
-        </DockPanel>
+        </DockPanel>		
     </Grid>
 </Window>
