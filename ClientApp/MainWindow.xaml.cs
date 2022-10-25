@@ -24,9 +24,13 @@ namespace ClientApp
         { 
             InitializeComponent();
         }
-        void OnClick1(object sender, RoutedEventArgs e)
+        private bool _isDark;
+
+        private void ChangeTheme(object sender, RoutedEventArgs e)
         {
-            button1.Background = Brushes.Blue;
+            ResourceLocator.SetColorScheme(Application.Current.Resources, _isDark ? ResourceLocator.LightColorScheme : ResourceLocator.DarkColorScheme);
+
+            _isDark = !_isDark;
         }
     }
 }
