@@ -5,27 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-	<Window.Style>
-		<Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
-	</Window.Style>
-	<DockPanel>
-        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <Button DockPanel.Dock="Left" Margin="5" FontWeight="Bold" Click="Bolt" Content=" B "></Button>
-            <Button DockPanel.Dock="Left" Margin="5" FontStyle="Italic"  Click="Italic" Content=" I "></Button>
-            <Button DockPanel.Dock="Left" Margin="5" FontStretch="UltraCondensed" Click="Underline" Content=" U "></Button>
-            <TextBox x:Name="size_textBox" DockPanel.Dock="Left" Margin="5,5,0,5" Text="{Binding ElementName=size_comboBox, Path=SelectedValue}" TextChanged="TextBox_TextChanged"/>
-            <ComboBox DockPanel.Dock="Left" Margin="0,5,5,5" MaxWidth="5" Name="size_comboBox"></ComboBox>
-        </DockPanel>
-        
-		<DockPanel LastChildFill="False">
-        <RichTextBox Margin="10" SpellCheck.IsEnabled="True" Language="en-US">
-            <RichTextBox.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0" />
-                </Style>
-            </RichTextBox.Resources>
+        Title="Text Editor" Height="450" Width="800">
+    <Grid Margin="0,0,0,22">
+        <Menu IsMainMenu="True" Background="White">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Click="MenuItem_Click"/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="MenuItem_Click_1"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="MenuItem_Click_2"/>
+                <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="MenuItem_Click_3"/>
+                <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="MenuItem_Click_4"/>
+                <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="MenuItem_Click_5"/>
+                <MenuItem Header="Delete" InputGestureText = "Del   " Click="MenuItem_Click_6"/>
+            </MenuItem>
+            <MenuItem Header="Format">
+                <MenuItem Header="Font" Click="MenuItem_Click_7"/>
+                <MenuItem Header="Color" Click="MenuItem_Click_8"/>
+            </MenuItem>
+        </Menu>
+
+        <RichTextBox Name = "richTB"  RenderTransformOrigin="0.0,0.0" Margin="0,19,0,-23" BorderBrush="White" UndoLimit="98">
+            <RichTextBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="MenuItem_Click_9"/>
+                    <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="MenuItem_Click_10"/>
+                    <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="MenuItem_Click_11"/>
+                    <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="MenuItem_Click_12"/>
+                    <MenuItem Header="Delete" InputGestureText = "Del   " Click="MenuItem_Click_13"/>
+                </ContextMenu>
+            </RichTextBox.ContextMenu>
         </RichTextBox>
-        </DockPanel>	
-    </DockPanel>
+    </Grid>
 </Window>
