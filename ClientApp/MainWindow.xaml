@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
+	<Window.Style>
+		<Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
+	</Window.Style>
+	<DockPanel>
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <Button DockPanel.Dock="Left" Margin="5" FontWeight="Bold" Click="Bolt" Content=" B "></Button>
             <Button DockPanel.Dock="Left" Margin="5" FontStyle="Italic"  Click="Italic" Content=" I "></Button>
@@ -15,6 +18,14 @@
             <ComboBox DockPanel.Dock="Left" Margin="0,5,5,5" MaxWidth="5" Name="size_comboBox"></ComboBox>
         </DockPanel>
         
-        <RichTextBox SpellCheck.IsEnabled="True" x:Name="ri"/>
+		<DockPanel LastChildFill="False">
+			<RichTextBox Name="richtxt" Margin="10" SpellCheck.IsEnabled="True" Language="en-US">
+				<RichTextBox.Resources>
+					<Style TargetType="{x:Type Paragraph}">
+						<Setter Property="Margin" Value="0" />
+					</Style>
+				</RichTextBox.Resources>
+			</RichTextBox>
+		</DockPanel>
     </DockPanel>
 </Window>

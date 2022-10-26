@@ -31,61 +31,61 @@ namespace ClientApp
 
         private void Bolt(object sender, RoutedEventArgs e)
         {
-            if (ri.Selection.Text == "")
+            if (richtxt.Selection.Text == "")
             {
-                ri.SelectAll();
+                richtxt.SelectAll();
             }
-            if ((FontWeight)ri.Selection.GetPropertyValue(Inline.FontWeightProperty) == FontWeights.Bold)
+            if ((FontWeight)richtxt.Selection.GetPropertyValue(Inline.FontWeightProperty) == FontWeights.Bold)
             {
-                ri.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Normal);
+                richtxt.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Normal);
             }
             else
             {
-                ri.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Bold);
+                richtxt.Selection.ApplyPropertyValue(Inline.FontWeightProperty, FontWeights.Bold);
             }
         }
 
         private void Italic(object sender, RoutedEventArgs e)
         {
-            if (ri.Selection.Text == "")
+            if (richtxt.Selection.Text == "")
             {
-                ri.SelectAll();
+                richtxt.SelectAll();
             }
-            if ((FontStyle)ri.Selection.GetPropertyValue(Inline.FontStyleProperty) == FontStyles.Italic)
+            if ((FontStyle)richtxt.Selection.GetPropertyValue(Inline.FontStyleProperty) == FontStyles.Italic)
             {
-                ri.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Normal);
+                richtxt.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Normal);
             }
             else
             {
-                ri.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Italic);
+                richtxt.Selection.ApplyPropertyValue(Inline.FontStyleProperty, FontStyles.Italic);
             }
         }
 
         private void Underline(object sender, RoutedEventArgs e)
         {
-            if (ri.Selection.Text == "")
+            if (richtxt.Selection.Text == "")
             {
-                ri.SelectAll();
+                richtxt.SelectAll();
             }
 
-            if (ri.Selection.GetPropertyValue(Inline.TextDecorationsProperty) == TextDecorations.Underline)
+            if (richtxt.Selection.GetPropertyValue(Inline.TextDecorationsProperty) == TextDecorations.Underline)
             {
-                ri.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
+                richtxt.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, null);
             }
             else
             {
-                ri.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
+                richtxt.Selection.ApplyPropertyValue(Inline.TextDecorationsProperty, TextDecorations.Underline);
             }
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
            if(size_textBox.Text!="0"&&size_textBox.Text!=""&&size_textBox.Text!=null)
             {
-                if (ri.Selection.Text == "")
+                if (richtxt.Selection.Text == "")
                 {
-                    ri.SelectAll();
+                    richtxt.SelectAll();
                 }
-                ri.Selection.ApplyPropertyValue(Inline.FontSizeProperty, size_textBox.Text);
+                richtxt.Selection.ApplyPropertyValue(Inline.FontSizeProperty, size_textBox.Text);
 
             }
         }
