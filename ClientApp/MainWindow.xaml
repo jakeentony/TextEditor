@@ -19,13 +19,13 @@
         </DockPanel>
         
 		<DockPanel LastChildFill="False">
-			<RichTextBox Name="richtxt" Margin="10" SpellCheck.IsEnabled="True" Language="en-US">
-				<RichTextBox.Resources>
-					<Style TargetType="{x:Type Paragraph}">
-						<Setter Property="Margin" Value="0" />
-					</Style>
-				</RichTextBox.Resources>
-			</RichTextBox>
-		</DockPanel>
+        <RichTextBox Margin="10" SpellCheck.IsEnabled="True" Language="en-US">
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        </DockPanel>	
     </DockPanel>
 </Window>
