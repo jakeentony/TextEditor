@@ -36,8 +36,17 @@
             <ComboBox Margin="0,5,5,5" MaxWidth="10" Name="size_comboBox"></ComboBox>
         </ToolBar>
 
+        <StatusBar DockPanel.Dock="Bottom">
+            <Label Content="Lines: "/>
+            <TextBlock x:Name="ln"/>
+            <Label Content="Words: "/>
+            <TextBlock x:Name="wr"/>
+            <Label Content="Symbols: "/>
+            <TextBlock x:Name="sm"/>
+        </StatusBar>
+        
         <DockPanel LastChildFill="False">
-            <RichTextBox Name = "richTB" Margin="10" SpellCheck.IsEnabled="True" Language="en-US">
+            <RichTextBox Name = "richTB" Margin="10" SpellCheck.IsEnabled="True" Language="en-US" TextChanged="richTB_TextChanged">
                 <RichTextBox.Resources>
                     <Style TargetType="{x:Type Paragraph}">
                         <Setter Property="Margin" Value="0" />
