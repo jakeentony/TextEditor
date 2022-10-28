@@ -94,11 +94,10 @@ namespace ClientApp
         }
         private void Print_Click(object sender, RoutedEventArgs e)
         {
-            richTB.SelectAll();
             PrintDialog print = new PrintDialog();
             if (print.ShowDialog() == true)
             {
-                print.PrintVisual(richTB, "print");
+                print.PrintDocument(((IDocumentPaginatorSource)richTB.Document).DocumentPaginator, "print");
             }
         }
 
