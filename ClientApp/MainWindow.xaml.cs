@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Color = System.Windows.Media.Color;
+using DataFormats = System.Windows.DataFormats;
+using FontFamily = System.Windows.Media.FontFamily;
+using FontStyle = System.Windows.FontStyle;
+using Path = System.IO.Path;
 using PrintDialog = System.Windows.Controls.PrintDialog;
 
 namespace ClientApp
@@ -103,12 +109,23 @@ namespace ClientApp
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog o = new Microsoft.Win32.OpenFileDialog();
-            if (o.ShowDialog() == true)
+            Microsoft.Win32.OpenFileDialog open = new Microsoft.Win32.OpenFileDialog();
+            open.Filter = "rich text file, text file(*.rtf;*.txt)|*.rtf;*.txt|text file(*.txt)|*.txt|rich text file(*.rtf)|*.rtf";
+            if (open.ShowDialog() == true)
             {
-                string text = File.ReadAllText(o.FileName);
                 richTB.Document.Blocks.Clear();
-                richTB.Document.Blocks.Add(new Paragraph(new Run(text)));
+                switch (System.IO.Path.GetExtension(open.FileName))
+                {
+                    case ".txt":
+                        string text = File.ReadAllText(open.FileName);
+                        richTB.Document.Blocks.Add(new Paragraph(new Run(text)));
+                        break;
+                    case ".rtf":
+                        richTB.Selection.Load(new FileStream(open.FileName, FileMode.Open), DataFormats.Rtf);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -180,6 +197,36 @@ namespace ClientApp
             wr.Text=tmp.Count(s=>s!="").ToString();
             tmp = str.Split('\n');
             ln.Text = (tmp.Length - 1).ToString();
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange range = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd);
+            Microsoft.Win32.SaveFileDialog save = new();
+            save.Filter = "rich text file, text file(*.rtf;*.txt)|*.rtf;*.txt|text file(*.txt)|*.txt|rich text file(*.rtf)|*.rtf|(*.pdf)|*.pdf";
+            if (save.ShowDialog() == true)
+            {
+                switch (System.IO.Path.GetExtension(save.FileName))
+                {
+                    case ".txt":
+                        using (var file = new FileStream(save.FileName, FileMode.OpenOrCreate))
+                        {
+                            range.Save(file, DataFormats.Text);
+                        }
+                        break;
+                    case ".rtf":
+                        using (var file = new FileStream(save.FileName, FileMode.OpenOrCreate))
+                        {
+                            range.Save(file, DataFormats.Rtf);
+                        }
+                        break;
+                    case ".pdf":
+                        File.WriteAllText(Path.Combine(save.FileName), range.Text);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
