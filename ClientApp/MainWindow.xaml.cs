@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using DataFormats = System.Windows.DataFormats;
 using Path = System.IO.Path;
 using PrintDialog = System.Windows.Controls.PrintDialog;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace ClientApp
 {
@@ -114,7 +116,7 @@ namespace ClientApp
                 {
                     case ".txt":
                         string text = File.ReadAllText(open.FileName);
-                        richTB.Document.Blocks.Add(new Paragraph(new Run(text)));
+                        richTB.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(text)));
                         break;
                     case ".rtf":
                         richTB.Selection.Load(new FileStream(open.FileName, FileMode.Open), DataFormats.Rtf);
@@ -217,7 +219,11 @@ namespace ClientApp
                         }
                         break;
                     case ".pdf":
-                        File.WriteAllText(Path.Combine(save.FileName), range.Text);
+                         iTextSharp.text.Document doc = new iTextSharp.text.Document();
+                        PdfWriter.GetInstance(doc,new FileStream(save.FileName,FileMode.Create));
+                        doc.Open();
+                        doc.Add(new iTextSharp.text.Paragraph(range.Text));
+                        doc.Close();
                         break;
                     default:
                         break;
