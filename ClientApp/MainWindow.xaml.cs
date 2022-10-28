@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,10 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Color = System.Windows.Media.Color;
 using DataFormats = System.Windows.DataFormats;
-using FontFamily = System.Windows.Media.FontFamily;
-using FontStyle = System.Windows.FontStyle;
 using Path = System.IO.Path;
 using PrintDialog = System.Windows.Controls.PrintDialog;
 
