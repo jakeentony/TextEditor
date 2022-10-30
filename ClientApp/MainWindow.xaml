@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
+        Icon="C:\Users\User\Favorites\Desktop\icon.ico"
         Title="Text Editor" Height="450" Width="800">
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
@@ -13,8 +14,9 @@
         <Menu DockPanel.Dock="Top" IsMainMenu="True" Background="White">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Click="Open_Click"/>
-                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click"/>
                 <MenuItem Header="Print" Click="Print_Click"/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click"/>
+                
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click"/>

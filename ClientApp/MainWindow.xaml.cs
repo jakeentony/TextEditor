@@ -180,6 +180,6 @@ namespace ClientApp
             wr.Text=tmp.Count(s=>s!="").ToString();
             tmp = str.Split('\n');
             ln.Text = (tmp.Length - 1).ToString();
-        }
+        }        
     }
 }
