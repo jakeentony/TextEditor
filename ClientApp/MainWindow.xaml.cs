@@ -27,6 +27,7 @@ namespace ClientApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        string path;
         List<int> size;
         public MainWindow()
         {
@@ -115,6 +116,7 @@ namespace ClientApp
                 richTB.Document.Blocks.Clear();
                 richTB.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(text)));
             }
+            path = open.FileName;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -219,6 +221,12 @@ namespace ClientApp
                         break;
                 }
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string text = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;           
+            File.WriteAllText(path, text);
         }
     }
 }
