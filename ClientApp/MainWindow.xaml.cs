@@ -26,7 +26,7 @@ namespace ClientApp
         List<int> size;
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();           
             size = new List<int>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
             size_comboBox.ItemsSource = size;
             size_comboBox.SelectedValue = 11;
