@@ -14,7 +14,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+
 using PrintDialog = System.Windows.Controls.PrintDialog;
+using DataFormats = System.Windows.DataFormats;
 
 namespace ClientApp
 {
@@ -103,12 +107,13 @@ namespace ClientApp
 
         private void Open_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog o = new Microsoft.Win32.OpenFileDialog();
-            if (o.ShowDialog() == true)
+            Microsoft.Win32.OpenFileDialog open = new Microsoft.Win32.OpenFileDialog();
+            open.Filter = "rich text file, text file, portable document format(*.rtf;*.txt;*.pdf)|*.rtf;*.txt;*.pdf|text file(*.txt)|*.txt|rich text file(*.rtf)|*.rtf|portable document format(*.pdf)|*.pdf";
+            if (open.ShowDialog() == true)
             {
-                string text = File.ReadAllText(o.FileName);
+                string text = File.ReadAllText(open.FileName);
                 richTB.Document.Blocks.Clear();
-                richTB.Document.Blocks.Add(new Paragraph(new Run(text)));
+                richTB.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(text)));
             }
         }
 
@@ -175,11 +180,45 @@ namespace ClientApp
         private void richTB_TextChanged(object sender, TextChangedEventArgs e)
         {
             string str = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;
-            sm.Text = (str.Count(s=>s!='\r'&&s!='\n')).ToString();
+            sm.Text = (str.Count(s => s != '\r' && s != '\n')).ToString();
             var tmp = str.Split(' ', '.', ',', '-', '\n', '\t', '\r');
-            wr.Text=tmp.Count(s=>s!="").ToString();
+            wr.Text = tmp.Count(s => s != "").ToString();
             tmp = str.Split('\n');
             ln.Text = (tmp.Length - 1).ToString();
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange range = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd);
+            Microsoft.Win32.SaveFileDialog save = new();
+            save.Filter = "rich text file, text file, portable document format(*.rtf;*.txt;*.pdf)|*.rtf;*.txt;*.pdf|text file(*.txt)|*.txt|rich text file(*.rtf)|*.rtf|portable document format(*.pdf)|*.pdf";
+            if (save.ShowDialog() == true)
+            {
+                switch (System.IO.Path.GetExtension(save.FileName))
+                {
+                    case ".txt":
+                        using (var file = new FileStream(save.FileName, FileMode.OpenOrCreate))
+                        {
+                            range.Save(file, DataFormats.Text);
+                        }
+                        break;
+                    case ".rtf":
+                        using (var file = new FileStream(save.FileName, FileMode.OpenOrCreate))
+                        {
+                            range.Save(file, DataFormats.Rtf);
+                        }
+                        break;
+                    case ".pdf":
+                        Document doc = new Document();
+                        PdfWriter.GetInstance(doc, new FileStream(save.FileName, FileMode.Create));
+                        doc.Open();
+                        doc.Add(new iTextSharp.text.Paragraph(range.Text));
+                        doc.Close();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
