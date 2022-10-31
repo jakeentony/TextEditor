@@ -1,4 +1,4 @@
-﻿<Window x:Class="ClientApp.MainWindow"
+<Window x:Class="ClientApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,9 +14,9 @@
         <Menu DockPanel.Dock="Top" IsMainMenu="True" Background="White">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Click="Open_Click"/>
+                <MenuItem Header="SaveAs" Click="SaveAs_Click"/>
                 <MenuItem Header="Print" Click="Print_Click"/>
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click"/>
-                
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click"/>
@@ -48,7 +48,7 @@
         </StatusBar>
         
         <DockPanel LastChildFill="False">
-            <RichTextBox Name = "richTB" Margin="10" SpellCheck.IsEnabled="True" Language="en-US" TextChanged="richTB_TextChanged">
+            <RichTextBox Name = "richTB" Margin="10" VerticalScrollBarVisibility="Visible" SpellCheck.IsEnabled="True" Language="en-US" TextChanged="richTB_TextChanged">
                 <RichTextBox.Resources>
                     <Style TargetType="{x:Type Paragraph}">
                         <Setter Property="Margin" Value="0" />
