@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Text Editor" Height="450" Width="800">
     <Window.Style>
@@ -13,27 +14,27 @@
         <Menu DockPanel.Dock="Top" IsMainMenu="True" Background="White">
             <MenuItem Header="File">
                 <MenuItem Header="Open" Click="Open_Click"/>
-                <MenuItem Header="Save" Click="Save_Click"/>
+                <MenuItem Header="Save" Click="Save_Click" Icon="{materialDesign:PackIcon Kind=ContentSave}"/>
                 <MenuItem Header="SaveAs" Click="SaveAs_Click"/>
-                <MenuItem Header="Print" Click="Print_Click"/>
-                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click"/>
+                <MenuItem Header="Print" Click="Print_Click" Icon="{materialDesign:PackIcon Kind=Printer}"/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click" Icon="{materialDesign:PackIcon Kind=ExitToApp}"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click"/>
-                <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click"/>
-                <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click"/>
-                <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click"/>
-                <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click"/>
+                <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click" Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
+                <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click" Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
+                <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click" Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
+                <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click" Icon="{materialDesign:PackIcon Kind=SelectAll}"/>
+                <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click" Icon="{materialDesign:PackIcon Kind=Delete}"/>
             </MenuItem>
             <MenuItem Header="Format">
-                <MenuItem Header="Font" Click="Font_Click"/>
-                <MenuItem Header="Color" Click="Color_Click"/>
+                <MenuItem Header="Font" Click="Font_Click" Icon="{materialDesign:PackIcon Kind=FormatFont}"/>
+                <MenuItem Header="Color" Click="Color_Click" Icon="{materialDesign:PackIcon Kind=Color}"/>
             </MenuItem>
         </Menu>
         <ToolBar DockPanel.Dock="Top">
-            <Button Margin="5" FontWeight="Bold" Click="Bolt_Click" Content=" B "></Button>
-            <Button Margin="5" FontStyle="Italic"  Click="Italic_Click" Content=" I "></Button>
-            <Button Margin="5" FontStretch="UltraCondensed" Click="Underline_Click" Content=" U "></Button>
+            <Button Click="Bolt_Click" Content="{materialDesign:PackIcon Kind=FormatBold}"></Button>
+            <Button Click="Italic_Click" Content="{materialDesign:PackIcon Kind=FormatItalic}"></Button>
+            <Button Click="Underline_Click" Content="{materialDesign:PackIcon Kind=FormatUnderline}"></Button>
             <TextBox x:Name="size_textBox" Margin="5,5,0,5" Text="{Binding ElementName=size_comboBox, Path=SelectedValue}" TextChanged="TextBox_TextChanged"/>
             <ComboBox Margin="0,5,5,5" MaxWidth="10" Name="size_comboBox"></ComboBox>
         </ToolBar>
