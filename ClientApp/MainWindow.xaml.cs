@@ -223,7 +223,7 @@ namespace ClientApp
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
             string text = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;           
             File.WriteAllText(path, text);
