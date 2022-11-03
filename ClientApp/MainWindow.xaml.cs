@@ -266,6 +266,14 @@ namespace ClientApp
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
             size_textBox.Foreground = colorBrushBlack;
+        } 
+        private void redTheme(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"red.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushWhite;
         }
 
         private void Toggle_Unchecked(object sender, RoutedEventArgs e)

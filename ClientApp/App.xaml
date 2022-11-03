@@ -9,6 +9,7 @@
 			<ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="dark.xaml"/>
                 <ResourceDictionary Source="green.xaml"/>
+                <ResourceDictionary Source="red.xaml"/>
                 <ResourceDictionary Source="blue.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
