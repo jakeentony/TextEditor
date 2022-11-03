@@ -268,7 +268,7 @@ namespace ClientApp
             size_textBox.Foreground = colorBrushBlack;
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private void Toggle_Unchecked(object sender, RoutedEventArgs e)
         {
             var uri = new Uri(@"light.xaml", UriKind.Relative);
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
@@ -277,7 +277,7 @@ namespace ClientApp
             size_textBox.Foreground = colorBrushBlack;
         }
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Toggle_Checked(object sender, RoutedEventArgs e)
         {
             var uri = new Uri(@"dark.xaml", UriKind.Relative);
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
