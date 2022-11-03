@@ -29,9 +29,15 @@ namespace ClientApp
     {
         string path;
         List<int> size;
+        SolidColorBrush colorBrushWhite;
+        SolidColorBrush colorBrushBlack;
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
+            colorBrushWhite = new SolidColorBrush();
+            colorBrushWhite.Color = Colors.White;
+            colorBrushBlack = new SolidColorBrush();
+            colorBrushBlack.Color = Colors.Black;
             size = new List<int>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
             size_comboBox.ItemsSource = size;
             size_comboBox.SelectedValue = 11;
@@ -227,6 +233,57 @@ namespace ClientApp
         {
             string text = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;           
             File.WriteAllText(path, text);
+        }
+
+        private void darkTheme(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"dark.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushWhite;
+        }
+        private void lightTheme(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"light.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushBlack;
+        }
+        private void greenTheme(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"green.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushWhite;
+        }
+        private void blueTheme(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"blue.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushBlack;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"light.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushBlack;
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var uri = new Uri(@"dark.xaml", UriKind.Relative);
+            ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
+            App.Current.Resources.Clear();
+            App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            size_textBox.Foreground = colorBrushWhite;
         }
     }
 }
