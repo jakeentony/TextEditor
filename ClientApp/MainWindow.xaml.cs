@@ -19,6 +19,7 @@ using iTextSharp.text;
 
 using PrintDialog = System.Windows.Controls.PrintDialog;
 using DataFormats = System.Windows.DataFormats;
+using Paragraph = System.Windows.Documents.Paragraph;
 
 namespace ClientApp
 {
@@ -27,6 +28,8 @@ namespace ClientApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        [System.ComponentModel.Browsable(false)]
+        public System.Windows.Forms.HorizontalAlignment SelectionAlignment { get; set; }
         string path;
         List<int> size;
         SolidColorBrush colorBrushWhite;
@@ -233,6 +236,30 @@ namespace ClientApp
         {
             string text = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;           
             File.WriteAllText(path, text);
+        } 
+        private void rightTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+                richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Right);
+        }
+        private void centerTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+            richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Center);
+        }
+        private void leftTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+            richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Left);
+        }
+        private void justifyTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+             richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Justify);
         }
 
         private void darkTheme(object sender, RoutedEventArgs e)
