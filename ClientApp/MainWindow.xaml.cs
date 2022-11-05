@@ -112,6 +112,19 @@ namespace ClientApp
             }
         }
 
+        public void FirstOpen()
+        {
+            Microsoft.Win32.OpenFileDialog open = new Microsoft.Win32.OpenFileDialog();
+            open.Filter = "rich text file, text file, portable document format(*.rtf;*.txt;*.pdf)|*.rtf;*.txt;*.pdf|text file(*.txt)|*.txt|rich text file(*.rtf)|*.rtf|portable document format(*.pdf)|*.pdf";
+            if (open.ShowDialog() == true)
+            {
+                string text = File.ReadAllText(open.FileName);
+                richTB.Document.Blocks.Clear();
+                richTB.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(text)));
+            }
+            path = open.FileName;
+        }
+
         private void Open_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog open = new Microsoft.Win32.OpenFileDialog();

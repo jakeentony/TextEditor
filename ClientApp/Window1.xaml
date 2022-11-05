@@ -5,31 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         mc:Ignorable="d"
-        Title="Window1" Height="400" Width="300">
-    <Grid>
-        <TextBlock x:Name="label" Text="Welcome" Margin="72,10,72,329" FontSize="35"/>
-        <TextBlock x:Name="label1" Text="to" Margin="130,60,136,279" FontSize="35"/>
-        <TextBlock x:Name="label2" Text="Text Editor" Margin="60,110,68,218" FontSize="35"/>
+        Title="Text Editor" MaxHeight="400" MaxWidth="300" MinHeight="400" MinWidth="300" Height="400" Width="300">
+    <Grid Background="gray">
+        <TextBlock x:Name="label" Text="Welcome" Margin="72,10,54,302" FontSize="35" Background="gray"/>
+        <TextBlock x:Name="label1" Text="to" Margin="130,55,121,247" FontSize="35" Background="gray"/>
+        <TextBlock x:Name="label2" Text="Text Editor" Margin="60,100,54,205" FontSize="35" Background="gray"/>
         <Button x:Name="New" Height="30" Width="100"  
-            Content="New"  
+            Content="New"            
             Margin="100,200,0,0" VerticalAlignment="Top"  
             BorderBrush="Black"
-            HorizontalAlignment="Left" Background="Gray"/>
+            HorizontalAlignment="Left" Click="New_Click"/>
 
         <Button x:Name="Open" Height="30" Width="100"  
             Content="Open"  
             BorderBrush="Black"
-            Background="Gray"
             Margin="100,250,0,0" VerticalAlignment="Top"  
-            HorizontalAlignment="Left">
-        </Button>
+            HorizontalAlignment="Left"
+            Click="Open_Click"/>
 
         <Button x:Name="Exit" Height="30" Width="100"  
             Content="Exit"  
             BorderBrush="Black" 
-            Background="Gray"
             Margin="100,300,0,0" VerticalAlignment="Top"  
-            HorizontalAlignment="Left">
-        </Button>
+            HorizontalAlignment="Left"
+            Click="Exit_Click"/>
     </Grid>
+
 </Window>
