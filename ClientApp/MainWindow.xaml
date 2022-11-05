@@ -42,7 +42,7 @@
         <Button Content="About as" Click="aboutAs_Click"/>
         </DockPanel>
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <ToolBar>
+            <ToolBar ToolBarTray.IsLocked="True"> 
                 <Button Margin="5" Click="Bolt_Click" Content=" B " FontWeight="Bold"></Button>
                 <Button Margin="5" Click="Italic_Click" Content=" I " FontStyle="Italic"></Button>
                 <Button Margin="5" Click="Underline_Click" Content=" U "></Button>
