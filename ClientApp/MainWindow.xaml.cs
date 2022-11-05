@@ -19,6 +19,8 @@ using iTextSharp.text;
 
 using PrintDialog = System.Windows.Controls.PrintDialog;
 using DataFormats = System.Windows.DataFormats;
+using Paragraph = System.Windows.Documents.Paragraph;
+using MessageBox = System.Windows.MessageBox;
 
 namespace ClientApp
 {
@@ -27,6 +29,7 @@ namespace ClientApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        string textSize;
         string path;
         List<int> size;
         SolidColorBrush colorBrushWhite;
@@ -93,14 +96,15 @@ namespace ClientApp
         }
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (size_textBox.Text != "0" && size_textBox.Text != "" && size_textBox.Text != null)
+            var tb = (System.Windows.Controls.TextBox)e.OriginalSource;
+            textSize = tb.Text;
+            if (textSize != "0" && textSize != "" && textSize != null)
             {
                 if (richTB.Selection.Text == "")
                 {
                     richTB.SelectAll();
                 }
-                richTB.Selection.ApplyPropertyValue(Inline.FontSizeProperty, size_textBox.Text);
-
+                richTB.Selection.ApplyPropertyValue(Inline.FontSizeProperty, textSize);
             }
         }
         private void Print_Click(object sender, RoutedEventArgs e)
@@ -168,7 +172,7 @@ namespace ClientApp
             FontDialog dlg = new FontDialog();
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                size_textBox.Text = ((int)dlg.Font.Size).ToString();
+                textSize = ((int)dlg.Font.Size).ToString();
                 richTB.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, new FontFamily(dlg.Font.Name));
                 richTB.Selection.ApplyPropertyValue(Inline.FontWeightProperty, dlg.Font.Bold ? FontWeights.Bold : FontWeights.Regular);
                 richTB.Selection.ApplyPropertyValue(Inline.FontStyleProperty, dlg.Font.Italic ? FontStyles.Italic : FontStyles.Normal);
@@ -246,6 +250,30 @@ namespace ClientApp
         {
             string text = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;           
             File.WriteAllText(path, text);
+        } 
+        private void rightTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+            richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Right);
+        }
+        private void centerTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+            richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Center);
+        }
+        private void leftTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+            richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Left);
+        }
+        private void justifyTextAlign(object sender, RoutedEventArgs e)
+        {
+            if (richTB.Selection.Text == "")
+                richTB.SelectAll();
+             richTB.Selection.ApplyPropertyValue(Paragraph.TextAlignmentProperty, TextAlignment.Justify);
         }
 
         private void darkTheme(object sender, RoutedEventArgs e)
@@ -254,7 +282,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushWhite;
+            size_comboBox.Foreground = colorBrushWhite;
         }
         private void lightTheme(object sender, RoutedEventArgs e)
         {
@@ -262,7 +290,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushBlack;
+            size_comboBox.Foreground = colorBrushBlack;
         }
         private void greenTheme(object sender, RoutedEventArgs e)
         {
@@ -270,7 +298,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushWhite;
+            size_comboBox.Foreground = colorBrushWhite;
         }
         private void blueTheme(object sender, RoutedEventArgs e)
         {
@@ -278,7 +306,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushBlack;
+            size_comboBox.Foreground = colorBrushBlack;
         } 
         private void redTheme(object sender, RoutedEventArgs e)
         {
@@ -286,7 +314,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushWhite;
+            size_comboBox.Foreground = colorBrushWhite;
         }
 
         private void Toggle_Unchecked(object sender, RoutedEventArgs e)
@@ -295,7 +323,7 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushBlack;
+            size_comboBox.Foreground = colorBrushBlack;
         }
 
         private void Toggle_Checked(object sender, RoutedEventArgs e)
@@ -304,7 +332,12 @@ namespace ClientApp
             ResourceDictionary resourceDictionary = App.LoadComponent(uri) as ResourceDictionary;
             App.Current.Resources.Clear();
             App.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            size_textBox.Foreground = colorBrushWhite;
+            size_comboBox.Foreground = colorBrushWhite;
+        }
+
+        private void aboutAs_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Developers:\nSofiia Stepaniuk\nVitalii Marchuk\n=====\n\n2022.11.07", "About as",MessageBoxButton.OK,MessageBoxImage.Information);
         }
     }
 }
