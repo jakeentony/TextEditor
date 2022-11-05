@@ -337,7 +337,7 @@ namespace ClientApp
 
         private void aboutAs_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Developers:\nSofiia Stepaniuk\nVitalii Marchuk\n=====\n\n2022.11.07", "About as",MessageBoxButton.OK,MessageBoxImage.Information);
+            MessageBox.Show("Developers:\nSofiia Stepaniuk\nVitalii Marchuk\nYevhenii Parkonny\n\n2022.11.07", "About as",MessageBoxButton.OK,MessageBoxImage.Information);
         }
     }
 }
