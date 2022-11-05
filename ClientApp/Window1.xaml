@@ -1,0 +1,35 @@
+﻿<Window x:Class="ClientApp.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientApp"
+        mc:Ignorable="d"
+        Title="Window1" Height="400" Width="300">
+    <Grid>
+        <TextBlock x:Name="label" Text="Welcome" Margin="72,10,72,329" FontSize="35"/>
+        <TextBlock x:Name="label1" Text="to" Margin="130,60,136,279" FontSize="35"/>
+        <TextBlock x:Name="label2" Text="Text Editor" Margin="60,110,68,218" FontSize="35"/>
+        <Button x:Name="New" Height="30" Width="100"  
+            Content="New"  
+            Margin="100,200,0,0" VerticalAlignment="Top"  
+            BorderBrush="Black"
+            HorizontalAlignment="Left" Background="Gray"/>
+
+        <Button x:Name="Open" Height="30" Width="100"  
+            Content="Open"  
+            BorderBrush="Black"
+            Background="Gray"
+            Margin="100,250,0,0" VerticalAlignment="Top"  
+            HorizontalAlignment="Left">
+        </Button>
+
+        <Button x:Name="Exit" Height="30" Width="100"  
+            Content="Exit"  
+            BorderBrush="Black" 
+            Background="Gray"
+            Margin="100,300,0,0" VerticalAlignment="Top"  
+            HorizontalAlignment="Left">
+        </Button>
+    </Grid>
+</Window>

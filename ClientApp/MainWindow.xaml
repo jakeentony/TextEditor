@@ -39,12 +39,12 @@
             </MenuItem>
         </Menu>
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <ToolBar>
+            <ToolBar ToolBarTray.IsLocked="True"> 
                 <Button Margin="5" Click="Bolt_Click" Content=" B " FontWeight="Bold"></Button>
                 <Button Margin="5" Click="Italic_Click" Content=" I " FontStyle="Italic"></Button>
                 <Button Margin="5" Click="Underline_Click" Content=" U "></Button>
                 <TextBox x:Name="size_textBox" Margin="5,5,0,5" Text="{Binding ElementName=size_comboBox, Path=SelectedValue}" TextChanged="TextBox_TextChanged"/>
-                <ComboBox Margin="0,5,5,5" MaxWidth="8" Name="size_comboBox"></ComboBox>
+                <ComboBox Margin="0,5,5,5" Name="size_comboBox"></ComboBox>
             </ToolBar>
             <local:Toggle DockPanel.Dock="Right" Checked="Toggle_Checked" Unchecked="Toggle_Unchecked" ></local:Toggle>
         </DockPanel>
