@@ -11,40 +11,42 @@
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
     </Window.Style>
     <DockPanel>
-        <Menu DockPanel.Dock="Top" IsMainMenu="True">
-            <MenuItem Header="File">
-                <MenuItem Header="Open" Click="Open_Click"/>
-                <MenuItem Header="Save" Click="Save_Click" Icon="{materialDesign:PackIcon Kind=ContentSave}"/>
-                <MenuItem Header="SaveAs" Click="SaveAs_Click"/>
-                <MenuItem Header="Print" Click="Print_Click" Icon="{materialDesign:PackIcon Kind=Printer}"/>
-                <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click" Icon="{materialDesign:PackIcon Kind=ExitToApp}"/>
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click" Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
-                <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click" Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
-                <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click" Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
-                <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click" Icon="{materialDesign:PackIcon Kind=SelectAll}"/>
-                <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click" Icon="{materialDesign:PackIcon Kind=Delete}"/>
-            </MenuItem>
-            <MenuItem Header="Format">
-                <MenuItem Header="Font" Click="Font_Click" Icon="{materialDesign:PackIcon Kind=FormatFont}"/>
-                <MenuItem Header="Color" Click="Color_Click" Icon="{materialDesign:PackIcon Kind=Color}"/>
-            </MenuItem>
-            <MenuItem Header="Theme">
-                <MenuItem Click="darkTheme" Header="dark"></MenuItem>
-                <MenuItem Click="lightTheme" Header="light"></MenuItem>
-                <MenuItem Click="greenTheme" Header="green"></MenuItem>
-                <MenuItem Click="blueTheme" Header="blue"></MenuItem>
-                <MenuItem Click="redTheme" Header="red"></MenuItem>
-            </MenuItem>
-        </Menu>
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <Menu IsMainMenu="True">
+                <MenuItem Header="File">
+                    <MenuItem Header="Open" Click="Open_Click"/>
+                    <MenuItem Header="Save" Click="Save_Click" Icon="{materialDesign:PackIcon Kind=ContentSave}"/>
+                    <MenuItem Header="SaveAs" Click="SaveAs_Click"/>
+                    <MenuItem Header="Print" Click="Print_Click" Icon="{materialDesign:PackIcon Kind=Printer}"/>
+                    <MenuItem Header="Exit" InputGestureText="Alt+F4" Click="Close_Click" Icon="{materialDesign:PackIcon Kind=ExitToApp}"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click" Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
+                    <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click" Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
+                    <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click" Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
+                    <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click" Icon="{materialDesign:PackIcon Kind=SelectAll}"/>
+                    <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click" Icon="{materialDesign:PackIcon Kind=Delete}"/>
+                </MenuItem>
+                <MenuItem Header="Format">
+                    <MenuItem Header="Font" Click="Font_Click" Icon="{materialDesign:PackIcon Kind=FormatFont}"/>
+                    <MenuItem Header="Color" Click="Color_Click" Icon="{materialDesign:PackIcon Kind=Color}"/>
+                </MenuItem>
+                <MenuItem Header="Theme">
+                    <MenuItem Click="darkTheme" Header="dark"></MenuItem>
+                    <MenuItem Click="lightTheme" Header="light"></MenuItem>
+                    <MenuItem Click="greenTheme" Header="green"></MenuItem>
+                    <MenuItem Click="blueTheme" Header="blue"></MenuItem>
+                    <MenuItem Click="redTheme" Header="red"></MenuItem>
+                </MenuItem>
+            </Menu>
+        <Button Content="About as" Click="aboutAs_Click"/>
+        </DockPanel>
         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
             <ToolBar>
                 <Button Margin="5" Click="Bolt_Click" Content=" B " FontWeight="Bold"></Button>
                 <Button Margin="5" Click="Italic_Click" Content=" I " FontStyle="Italic"></Button>
                 <Button Margin="5" Click="Underline_Click" Content=" U "></Button>
-                <TextBox x:Name="size_textBox" Margin="5,5,0,5" Text="{Binding ElementName=size_comboBox, Path=SelectedValue}" TextChanged="TextBox_TextChanged"/>
-                <ComboBox Margin="0,5,5,5" Name="size_comboBox"></ComboBox>
+                <ComboBox Margin="0,5,5,5" Name="size_comboBox" IsReadOnly="False" IsEditable="True" TextBoxBase.TextChanged="TextBox_TextChanged" Text="{Binding ElementName=size_comboBox, Path=SelectedValue}"></ComboBox>
                 <Button Margin="5" Click="leftTextAlign" Content="{materialDesign:PackIcon Kind=FormatAlignLeft}"/>
                 <Button Margin="5" Click="centerTextAlign" Content="{materialDesign:PackIcon Kind=FormatAlignCenter}"/>
                 <Button Margin="5" Click="rightTextAlign" Content="{materialDesign:PackIcon Kind=FormatAlignRight}"/>
