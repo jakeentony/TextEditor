@@ -153,7 +153,19 @@ namespace ClientApp
             richTB.Selection.Text = "";
         }        
 
-        public void SaveAs_Click()
+      
+        private void richTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string str = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd).Text;
+            sm.Text = (str.Count(s => s != '\r' && s != '\n')).ToString();
+            var tmp = str.Split(' ', '.', ',', '-', '\n', '\t', '\r');
+            wr.Text = tmp.Count(s => s != "").ToString();
+            tmp = str.Split('\n');
+            ln.Text = (tmp.Length - 1).ToString();
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+
         {
             TextRange range = new TextRange(richTB.Document.ContentStart, richTB.Document.ContentEnd);
             Microsoft.Win32.SaveFileDialog save = new();
