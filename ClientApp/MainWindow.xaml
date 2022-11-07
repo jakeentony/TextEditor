@@ -64,23 +64,55 @@
             <TextBlock x:Name="sm"/>
         </StatusBar>
         
-        <DockPanel LastChildFill="False">
-            <RichTextBox Name = "richTB" Margin="10" VerticalScrollBarVisibility="Visible" SpellCheck.IsEnabled="True" Language="en-US" TextChanged="richTB_TextChanged">
-                <RichTextBox.Resources>
-                    <Style TargetType="{x:Type Paragraph}">
-                        <Setter Property="Margin" Value="0" />
+        <DockPanel>
+            <TabControl DockPanel.Dock="Top" Name="tabDynamic" ItemsSource="{Binding}" 
+ SelectionChanged="tabDynamic_SelectionChanged">
+                <TabControl.Items>
+                    <RichTextBox Margin="10" VerticalScrollBarVisibility="Visible" SpellCheck.IsEnabled="True" Language="en-US" TextChanged="richTB_TextChanged">
+                        <RichTextBox.Resources>
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0" />
+                            </Style>
+                        </RichTextBox.Resources>
+                        <RichTextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click" Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
+                                <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click" Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
+                                <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click" Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
+                                <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click" Icon="{materialDesign:PackIcon Kind=SelectAll}"/>
+                                <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click" Icon="{materialDesign:PackIcon Kind=Delete}"/>
+                            </ContextMenu>
+                        </RichTextBox.ContextMenu>
+                    </RichTextBox>
+                </TabControl.Items>
+                <TabControl.Resources>
+                    <DataTemplate x:Key="TabHeader" DataType="TabItem">
+                        <DockPanel>
+                            <Button Name="btnDelete" DockPanel.Dock="Right" 
+                 Margin="5,0,0,0" Padding="0" Click="btnDelete_Click" 
+                 CommandParameter="{Binding RelativeSource=
+                 {RelativeSource AncestorType={x:Type TabItem}}, Path=Name}">
+                                <Image Source="/delete.gif" Height="11" Width="11"></Image>
+                            </Button>
+                            <TextBlock Text="{Binding RelativeSource=
+            {RelativeSource AncestorType={x:Type TabItem}}, Path=Header}" />
+                        </DockPanel>
+                        
+                    </DataTemplate>
+                    <Style TargetType="TextBox">
+                        <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                        <Setter Property="AcceptsReturn" Value="True"></Setter>
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+                        <Setter Property="MaxLines" Value="5000"></Setter>
+                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" 
+             Value="Auto"></Setter>
+                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" 
+             Value="Auto"></Setter>
                     </Style>
-                </RichTextBox.Resources>
-                <RichTextBox.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Copy" InputGestureText = "Ctrl+C" Click="Copy_Click" Icon="{materialDesign:PackIcon Kind=ContentCopy}"/>
-                        <MenuItem Header="Cut" InputGestureText = "Ctrl+X" Click="Cut_Click" Icon="{materialDesign:PackIcon Kind=ContentCut}"/>
-                        <MenuItem Header="Paste" InputGestureText = "Ctrl+V" Click="Paste_Click" Icon="{materialDesign:PackIcon Kind=ContentPaste}"/>
-                        <MenuItem Header="Selected All" InputGestureText = "Ctrl+A" Click="SelectAll_Click" Icon="{materialDesign:PackIcon Kind=SelectAll}"/>
-                        <MenuItem Header="Delete" InputGestureText = "Del   " Click="Delete_Click" Icon="{materialDesign:PackIcon Kind=Delete}"/>
-                    </ContextMenu>
-                </RichTextBox.ContextMenu>
-            </RichTextBox>
+                </TabControl.Resources>
+            </TabControl>
+            
         </DockPanel>
     </DockPanel>
 </Window>
